@@ -5,18 +5,16 @@ import os
 import random
 import re
 import sys
-
+import statistics
 
 # Complete the reverseArray function below.
-def weightedMean(elements, wgts):
+def standardDev(count, elements):
 
-    s = 0
-    for element, wgt in zip(elements, wgts):
-        s += element * wgt
+    mean = statistics.mean(elements)
 
-    average = s / sum(wgts)
+    sDev = statistics.pstdev(elements, mean)
     
-    fptr.write(str(round(average,1)))
+    fptr.write(str(round(sDev,1)))
     fptr.write('\n')
     return 
 
@@ -26,9 +24,8 @@ if __name__ == '__main__':
     arr_count = int(input())
 
     arr_ele = list(map(int, input().rstrip().split()))
-    arr_weights = list(map(int, input().rstrip().split()))
 
-    weightedMean(arr_ele, arr_weights)
+    standardDev(arr_count, arr_ele)
 
 
 
@@ -36,6 +33,5 @@ if __name__ == '__main__':
 
 #5
 #10 40 30 50 20
-#1 2 3 4 5
 
-# Output 32.0
+# Output 14.1
